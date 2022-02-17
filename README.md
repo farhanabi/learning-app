@@ -1,10 +1,9 @@
-# learning-app
+# Naflibox Learning App
 
-🎉 Congratulations, your project was successfully bootstrapped with [Create Next Stack](https://github.com/akd-io/create-next-stack)!
-
-To get started, run:
+To get started, clone this git repository, and then run:
 
 ```bash
+yarn install
 yarn dev
 ```
 
@@ -34,6 +33,7 @@ The table below gives an overview of the technologies used in this project, as w
 | [React](https://reactjs.org/)                             | [Docs](https://reactjs.org/docs/getting-started.html) - [GitHub repo](https://github.com/facebook/react)                                                             |
 | [TypeScript](https://www.typescriptlang.org/)             | [Docs](https://www.typescriptlang.org/docs/) - [GitHub repo](https://github.com/microsoft/TypeScript)                                                                |
 | [CSS Modules](https://github.com/css-modules/css-modules) | [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
+| [Tailwind CSS](https://tailwindcss.com/)                  | [Docs](https://tailwindcss.com/docs/) - [GitHub repo](https://github.com/tailwindlabs/tailwindcss)                                                                   |
 | [React Hook Form](https://react-hook-form.com/)           | [Docs](https://react-hook-form.com/get-started) - [GitHub repo](https://github.com/react-hook-form/react-hook-form)                                                  |
 | [Framer Motion](https://www.framer.com/motion/)           | [Docs](https://www.framer.com/docs/) - [GitHub repo](https://github.com/framer/motion)                                                                               |
 | [ESLint](https://eslint.org/)                             | [Configuration](https://eslint.org/docs/user-guide/configuring/) - [Rules](https://eslint.org/docs/rules/) - [GitHub Repo](https://github.com/eslint/eslint)         |
