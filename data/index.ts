@@ -20,7 +20,7 @@ export const posts = [
     slug: 'mengenal-waktu-sehari-hari',
     title: 'Mengenal Waktu Sehari-hari',
     href: '#',
-    category: { slug: 'kognitif', name: 'Kognitif' },
+    category: categories[2],
     date: 'Mar 16, 2020',
     datetime: '2020-03-16',
     imageUrl:
@@ -36,7 +36,7 @@ export const posts = [
     slug: 'mencari-harta-harun-di-rumah',
     title: 'Mencari Harta Karun di Rumah',
     href: '#',
-    category: { slug: 'kognitif', name: 'Kognitif' },
+    category: categories[2],
     date: 'Mar 10, 2020',
     datetime: '2020-03-10',
     imageUrl:
@@ -52,7 +52,7 @@ export const posts = [
     slug: 'mencari-rumah-di-harta-karun',
     title: 'Mencari Rumah di Harta Karun',
     href: '#',
-    category: { slug: 'kognitif', name: 'Kognitif' },
+    category: categories[2],
     date: 'Feb 12, 2020',
     datetime: '2020-02-12',
     imageUrl:
