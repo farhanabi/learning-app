@@ -1,3 +1,12 @@
+import bahasaIcon from '../public/images/category/blocks.png';
+import kognitifIcon from '../public/images/category/brain.png';
+import sosialIcon from '../public/images/category/chat.png';
+import motorikIcon from '../public/images/category/juggling-ball.png';
+import moralIcon from '../public/images/category/kindness.png';
+import seniIcon from '../public/images/category/palette.png';
+import emosiIcon from '../public/images/category/reaction.png';
+import sensorikIcon from '../public/images/category/search.png';
+
 export const ageSettings = [
   { slug: '1-2', name: '1-2 tahun' },
   { slug: '2-3', name: '2-3 tahun' },
@@ -5,14 +14,14 @@ export const ageSettings = [
 ];
 
 export const categories = [
-  { slug: 'motorik', name: 'Motorik' },
-  { slug: 'sensorik', name: 'Sensorik' },
-  { slug: 'kognitif', name: 'Kognitif' },
-  { slug: 'seni', name: 'Seni' },
-  { slug: 'sosial', name: 'Sosial' },
-  { slug: 'bahasa', name: 'Bahasa' },
-  { slug: 'lorem', name: 'Lorem' },
-  { slug: 'lorem', name: 'Lorem' },
+  { slug: 'motorik', name: 'Motorik', images: motorikIcon },
+  { slug: 'sensorik', name: 'Sensorik', images: sensorikIcon },
+  { slug: 'kognitif', name: 'Kognitif', images: kognitifIcon },
+  { slug: 'seni', name: 'Seni', images: seniIcon },
+  { slug: 'sosial', name: 'Sosial', images: sosialIcon },
+  { slug: 'bahasa', name: 'Bahasa', images: bahasaIcon },
+  { slug: 'moral', name: 'Moral', images: moralIcon },
+  { slug: 'emosi', name: 'Emosi', images: emosiIcon },
 ];
 
 export const posts = [
@@ -65,3 +74,49 @@ export const posts = [
     items: ['Jam Dinding', 'Kertas', 'Pensil/Pulpen'],
   },
 ];
+
+export function renderRingColor(slug: string) {
+  switch (slug) {
+    case 'motorik':
+      return 'ring-[#E09090]';
+    case 'sensorik':
+      return 'ring-[#D9D1BA]';
+    case 'kognitif':
+      return 'ring-[#EDB64A]';
+    case 'seni':
+      return 'ring-[#7ADFED]';
+    case 'sosial':
+      return 'ring-[#D1A5EC]';
+    case 'bahasa':
+      return 'ring-[#DCDCDC]';
+    case 'moral':
+      return 'ring-[#52C7C0]';
+    case 'emosi':
+      return 'ring-[#5CACD2]';
+    default:
+      return 'ring-yellow-500';
+  }
+}
+
+export function renderBgColor(slug: string | undefined) {
+  switch (slug) {
+    case 'motorik':
+      return 'bg-[#E09090]';
+    case 'sensorik':
+      return 'bg-[#D9D1BA]';
+    case 'kognitif':
+      return 'bg-[#EDB64A]';
+    case 'seni':
+      return 'bg-[#7ADFED]';
+    case 'sosial':
+      return 'bg-[#D1A5EC]';
+    case 'bahasa':
+      return 'bg-[#DCDCDC]';
+    case 'moral':
+      return 'bg-[#52C7C0]';
+    case 'emosi':
+      return 'bg-[#5CACD2]';
+    default:
+      return 'bg-yellow-500';
+  }
+}
