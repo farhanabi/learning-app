@@ -1,14 +1,16 @@
 import { RadioGroup } from '@headlessui/react';
+import { ArrowRightIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
 import Page from '../components/Page';
-import { ageSettings, categories, renderBgColor, renderRingColor } from '../data';
+import { ageSettings } from '../data';
+import { getCategories } from '../lib/api';
 import NafliboxLogo from '../public/images/naflibox-logo.png';
 import classNames from '../utils/classNames';
 
-export default function Index() {
+export default function Index({ categories }: any) {
   const [selectedAge, setSelectedAge] = useState(ageSettings[0]?.slug);
   const [selectedCategory, setSelectedCategory] = useState(categories[0]?.slug);
 
@@ -63,45 +65,64 @@ export default function Index() {
           <RadioGroup value={selectedCategory} onChange={setSelectedCategory}>
             <RadioGroup.Label className="sr-only">Category</RadioGroup.Label>
             <div className="mx-auto grid grid-cols-3 gap-2">
-              {categories.map((category) => (
-                <RadioGroup.Option key={category.slug} value={category.slug}>
-                  {({ checked }) => (
-                    <>
-                      <div
-                        className={classNames(
-                          checked && `ring-4 ${renderRingColor(category.slug)}`,
-                          `${renderBgColor(
-                            category.slug
-                          )} relative w-24 h-24 justify-center border rounded-3xl cursor-pointer sm:flex focus:outline-none`
-                        )}
-                        aria-hidden="true"
-                      >
-                        <div className="absolute -left-1 -top-1 w-20 h-20 ">
-                          <Image src={category.images} layout="fill" objectFit="contain" />
+              {categories.length > 0 &&
+                categories.map((category: any) => (
+                  <RadioGroup.Option key={category.slug} value={category.slug}>
+                    {({ checked }) => (
+                      <>
+                        <div
+                          className={classNames(
+                            checked && category.isAvailable && `ring-4 ring-yellow-400`,
+                            `relative w-24 h-24 justify-center border rounded-3xl cursor-pointer sm:flex focus:outline-none`
+                          )}
+                          style={{
+                            backgroundColor: category.isAvailable ? category.color : '#AAAAAA',
+                          }}
+                          aria-hidden="true"
+                        >
+                          <div
+                            className={classNames(
+                              'absolute -left-1 -top-1 w-20 h-20',
+                              !category.isAvailable && 'grayscale'
+                            )}
+                          >
+                            <Image
+                              src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${category.image.url}`}
+                              layout="fill"
+                              objectFit="contain"
+                            />
+                          </div>
                         </div>
-                      </div>
-                      <RadioGroup.Label
-                        as="p"
-                        className="w-full font-medium text-center text-stone-600 text-md"
-                      >
-                        {category.name}
-                      </RadioGroup.Label>
-                    </>
-                  )}
-                </RadioGroup.Option>
-              ))}
+                        <RadioGroup.Label
+                          as="p"
+                          className="w-full font-medium text-center text-stone-600 text-md"
+                        >
+                          {category.name}
+                        </RadioGroup.Label>
+                      </>
+                    )}
+                  </RadioGroup.Option>
+                ))}
             </div>
           </RadioGroup>
         </div>
 
         <Link href={`/kategori/${selectedCategory}/${selectedAge}`}>
           <a>
-            <button className="absolute bottom-2 right-2 w-max flex justify-center mt-4 py-2 px-8 border border-transparent rounded-xl shadow-lg text-xl font-medium text-black bg-yellow-300 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+            <button className="absolute bottom-2 right-2 w-max flex gap-x-2 justify-between items-center mt-4 py-2 px-8 border border-transparent rounded-xl shadow-lg text-xl font-medium text-black bg-yellow-300 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
               Pilih ide
+              <ArrowRightIcon className="h-6 w-6" />
             </button>
           </a>
         </Link>
       </div>
     </Page>
   );
+}
+
+export async function getStaticProps() {
+  const categories = (await getCategories()) || [];
+  return {
+    props: { categories },
+  };
 }
