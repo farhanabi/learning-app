@@ -7,8 +7,8 @@ import '../styles/globals.css';
 const CustomApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
 
-  const handleRouteChange = (url) => {
-    window.gtag('config', 'G-REQ86BEYNT', {
+  const handleRouteChange = (url: string) => {
+    (window as any).gtag('config', 'G-REQ86BEYNT', {
       page_path: url,
     });
   };
