@@ -148,3 +148,27 @@ export async function getVideoBySlug(slug: string | undefined = undefined) {
 
   return data?.videos[0];
 }
+
+export async function registerUser(data: { username: string; email: string; password: string }) {
+  const mutation = await fetchAPI(
+    `
+    mutation {
+      register(
+        input: {
+          username: "${data.username}"
+          email: "${data.email}"
+          password: "${data.password}"
+        }
+      ) {
+        jwt
+        user {
+          username
+          email
+        }
+      }
+    }
+    `
+  );
+
+  return mutation?.register;
+}
