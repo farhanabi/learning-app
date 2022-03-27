@@ -108,5 +108,6 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (context) => 
     props: {
       video,
     },
+    revalidate: 60,
   };
 };
