@@ -86,10 +86,9 @@ export default function Index({ categories }: any) {
                               !category.isAvailable && 'grayscale'
                             )}
                           >
-                            <Image
+                            <img
                               src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${category.image.url}`}
-                              layout="fill"
-                              objectFit="contain"
+                              alt={category.name}
                             />
                           </div>
                         </div>
