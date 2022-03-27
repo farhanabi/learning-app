@@ -140,7 +140,9 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (context) => 
   try {
     const category = await getCategoryBySlug(categoryQuery as string);
     const videos = await getVideos(where);
-    return videos ? { props: { videos, category }, revalidate: 60 } : { notFound: true };
+    return videos || category
+      ? { props: { videos, category }, revalidate: 60 }
+      : { notFound: true };
   } catch (error) {
     console.error(error);
     return { notFound: true };
