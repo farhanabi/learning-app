@@ -99,15 +99,11 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (context) => 
   let video: IVideo;
   try {
     video = await getVideoBySlug(slug as string);
+    if (video) {
+      return { props: { video }, revalidate: 60 };
+    } else return { notFound: true };
   } catch (error) {
     console.error(error);
     return { notFound: true };
   }
-
-  return {
-    props: {
-      video,
-    },
-    revalidate: 60,
-  };
 };

@@ -141,7 +141,7 @@ export async function getVideoBySlug(slug: string | undefined = undefined) {
   `,
     {
       variables: {
-        where_contains: { slug },
+        where: { slug },
       },
     }
   );
