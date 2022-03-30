@@ -23,7 +23,7 @@ export async function getCategories() {
   const data = await fetchAPI(
     `
     query Categories($where: JSON){
-      categories(where: $where) {
+      categories(where: $where, sort: "id") {
         id
         slug
         name

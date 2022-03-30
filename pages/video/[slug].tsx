@@ -28,12 +28,7 @@ export default function VideoPage({ video }: Props) {
               className={`p-1 h-10 w-10 rounded-lg`}
               style={{ backgroundColor: video?.category.color }}
             >
-              {video?.category.image.url && (
-                <img
-                  alt=""
-                  src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${video?.category.image.url}`}
-                />
-              )}
+              {video?.category.image.url && <img alt="" src={video?.category.image.url} />}
             </div>
             <div className="flex flex-col flex-1 text-white">
               <p className="text-md">

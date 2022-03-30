@@ -86,10 +86,7 @@ export default function Index({ categories }: any) {
                               !category.isAvailable && 'grayscale'
                             )}
                           >
-                            <img
-                              src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${category.image.url}`}
-                              alt={category.name}
-                            />
+                            <img src={category.image.url} alt={category.name} />
                           </div>
                         </div>
                         <RadioGroup.Label

@@ -31,12 +31,7 @@ export default function CategoryIndex({ videos, category }: Props) {
         <div className="fixed top-0 flex flex-row items-center gap-x-4 px-8 py-4 bg-[#EDB64A] w-full">
           {category ? (
             <div className={`p-1 h-10 w-10 rounded-lg`} style={{ backgroundColor: category.color }}>
-              {category.image && (
-                <img
-                  src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${category.image.url}`}
-                  alt=""
-                />
-              )}
+              {category.image && <img src={category.image.url} alt="" />}
             </div>
           ) : (
             <div className="bg-gray-50 h-10 w-10 rounded-lg" />
