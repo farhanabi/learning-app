@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -219,6 +220,11 @@ export default function Daftar() {
                 >
                   Daftar
                 </button>
+              </div>
+              <div className="flex justify-center">
+                <Link href="https://api.whatsapp.com/send?phone=6282217423034&text=haloo%20Naflibox!">
+                  <a>Butuh bantuan teknis?</a>
+                </Link>
               </div>
             </form>
           </div>
