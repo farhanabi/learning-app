@@ -28,7 +28,7 @@ export default function CategoryIndex({ videos, category }: Props) {
   return (
     <Page title="Naflibox" description="Karena Pendidikan dimulai dari Rumah">
       <div className="relative h-full w-full bg-gray-50 min-h-screen mx-auto py-16">
-        <div className="fixed top-0 flex flex-row items-center gap-x-4 px-8 py-4 bg-[#EDB64A] w-full">
+        <div className="fixed top-0 flex flex-row items-center gap-x-4 px-8 py-4 bg-[#EDB64A] w-full z-20">
           {category ? (
             <div className={`p-1 h-10 w-10 rounded-lg`} style={{ backgroundColor: category.color }}>
               {category.image && <img src={category.image.url} alt="" />}
@@ -120,7 +120,7 @@ export default function CategoryIndex({ videos, category }: Props) {
 }
 
 export async function getStaticPaths() {
-  return { paths: [], fallback: true };
+  return { paths: [], fallback: 'blocking' };
 }
 
 export const getStaticProps: GetStaticProps<Props, Params> = async (context) => {

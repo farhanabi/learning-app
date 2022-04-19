@@ -22,7 +22,7 @@ export default function VideoPage({ video }: Props) {
   return (
     <Page title="Naflibox" description="Karena Pendidikan dimulai dari Rumah">
       <div className="relative h-full w-full bg-gray-50 min-h-screen mx-auto py-16">
-        <div className="fixed top-0 flex flex-col px-8 py-4 bg-[#EDB64A] w-full">
+        <div className="fixed top-0 flex flex-col px-8 py-4 bg-[#EDB64A] w-full z-20">
           <div className="flex flex-row items-center gap-x-4 ">
             <div
               className={`p-1 h-10 w-10 rounded-lg`}
@@ -85,7 +85,7 @@ export default function VideoPage({ video }: Props) {
 }
 
 export async function getStaticPaths() {
-  return { paths: [], fallback: true };
+  return { paths: [], fallback: 'blocking' };
 }
 
 export const getStaticProps: GetStaticProps<Props, Params> = async (context) => {
