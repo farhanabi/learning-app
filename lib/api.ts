@@ -32,6 +32,7 @@ export async function getCategories() {
         }
         isAvailable
         color
+        description
       }
     }
   `
@@ -171,4 +172,27 @@ export async function registerUser(data: { username: string; email: string; pass
   );
 
   return mutation?.register;
+}
+
+export async function loginUser(data: { email: string; password: string }) {
+  const mutation = await fetchAPI(
+    `
+    mutation {
+      login(
+        input: {
+          identifier: "${data.email}"
+          password: "${data.password}"
+        }
+      ) {
+        jwt
+        user {
+          username
+          email
+        }
+      }
+    }
+    `
+  );
+
+  return mutation?.login;
 }

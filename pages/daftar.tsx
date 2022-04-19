@@ -9,6 +9,7 @@ import Page from '../components/Page';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { registerUser } from '../lib/api';
 import NafliboxLogo from '../public/images/naflibox-logo.png';
+import WhatsAppLogo from '../public/images/whatsapp.png';
 import classNames from '../utils/classNames';
 
 type FormValues = {
@@ -59,14 +60,14 @@ export default function Daftar() {
     const { name, email, password } = data;
 
     try {
-      const data = await registerUser({
+      const register = await registerUser({
         username: name,
         email,
         password,
       });
 
-      if (data.jwt) {
-        setToken(data.jwt);
+      if (register.jwt) {
+        setToken(register.jwt);
       }
     } catch (error) {
       console.error(error);
@@ -77,10 +78,22 @@ export default function Daftar() {
 
   return (
     <Page title="Daftar" description="Daftar Naflibox untuk mendapatkan konten lebih banyak!">
-      <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div className="relative min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="px-10 sm:mx-auto sm:px-10 sm:w-full sm:max-w-md">
-          <div className="p-4 w-40">
-            <Image src={NafliboxLogo} />
+          <div className="flex flex-row justify-between items-center">
+            <Link href="/">
+              <a>
+                <div className="w-40">
+                  <Image src={NafliboxLogo} />
+                </div>
+              </a>
+            </Link>
+            <div className="flex flex-col text-xs font-light items-end">
+              <p>Sudah punya akun?</p>
+              <Link href="/masuk">
+                <a className="text-red-500 underline">Masuk Disini</a>
+              </Link>
+            </div>
           </div>
           <h2 className="mt-6 text-left text-2xl text-cyan-500">Daftar gratis !</h2>
           <p className="mt-0 text-left text-2xl font-light text-gray-600">
@@ -221,13 +234,16 @@ export default function Daftar() {
                   Daftar
                 </button>
               </div>
-              <div className="flex justify-center">
-                <Link href="https://api.whatsapp.com/send?phone=6282217423034&text=haloo%20Naflibox!">
-                  <a>Butuh bantuan teknis?</a>
-                </Link>
-              </div>
             </form>
           </div>
+        </div>
+
+        <div className="fixed bottom-4 right-4">
+          <Link href="https://api.whatsapp.com/send?phone=6282217423034&text=haloo%20Naflibox!">
+            <a>
+              <Image src={WhatsAppLogo} />
+            </a>
+          </Link>
         </div>
       </div>
     </Page>

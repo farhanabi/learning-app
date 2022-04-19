@@ -44,7 +44,7 @@ export default function CategoryIndex({ videos, category }: Props) {
           </div>
         </div>
         {videos?.length > 0 ? (
-          <div className="mt-12 max-w-lg mx-auto grid gap-8 md:grid-cols-2 md:max-w-screen-md lg:mt-16 lg:grid-cols-3 lg:max-w-screen-xl">
+          <div className="mt-12 px-3 max-w-lg mx-auto grid gap-8 sm:px-0 md:grid-cols-2 md:max-w-screen-md lg:mt-16 lg:grid-cols-3 lg:max-w-screen-xl">
             {videos.map((video) => (
               <div
                 key={video.slug}
@@ -100,18 +100,20 @@ export default function CategoryIndex({ videos, category }: Props) {
             <p className="text-center">Aktivitas belum tersedia</p>
           </div>
         )}
-        <div className="flex flex-col justify-center items-center mt-16">
-          <h2 className="px-16 text-center text-sm">
-            Daftar untuk melihat aktivitas lainnya secara gratis
-          </h2>
-          <Link href="/daftar">
-            <a>
-              <button className="w-max flex justify-center mt-4 py-2 px-8 border border-transparent rounded-lg shadow-lg text-xl font-medium text-black bg-yellow-300 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
-                Daftar Gratis
-              </button>
-            </a>
-          </Link>
-        </div>
+        {!token && (
+          <div className="flex flex-col justify-center items-center mt-16">
+            <h2 className="px-16 text-center text-sm">
+              Daftar untuk melihat aktivitas lainnya secara gratis
+            </h2>
+            <Link href="/daftar">
+              <a>
+                <button className="w-max flex justify-center mt-4 py-2 px-8 border border-transparent rounded-lg shadow-lg text-xl font-medium text-black bg-yellow-300 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                  Daftar Gratis
+                </button>
+              </a>
+            </Link>
+          </div>
+        )}
       </div>
     </Page>
   );

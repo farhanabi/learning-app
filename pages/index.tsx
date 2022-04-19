@@ -12,11 +12,13 @@ import classNames from '../utils/classNames';
 
 export default function Index({ categories }: any) {
   const [selectedAge, setSelectedAge] = useState(ageSettings[0]?.slug);
-  const [selectedCategory, setSelectedCategory] = useState(categories[0]?.slug);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const activeCategory = categories.find((c: { slug: string }) => c.slug === selectedCategory);
 
   return (
     <Page title="Naflibox" description="Karena Pendidikan dimulai dari Rumah">
-      <div className="relative bg-gray-50 mx-auto max-w-sm h-full min-h-screen">
+      <div className="bg-gray-50 mx-auto max-w-sm h-5/6">
         <div className="p-4 w-40">
           <Image src={NafliboxLogo} />
         </div>
@@ -60,11 +62,10 @@ export default function Index({ categories }: any) {
               ))}
             </div>
           </RadioGroup>
-
           <h2 className="text-md my-4 px-4">Bunda ingin mempelajari kategori apa?</h2>
           <RadioGroup value={selectedCategory} onChange={setSelectedCategory}>
             <RadioGroup.Label className="sr-only">Category</RadioGroup.Label>
-            <div className="mx-auto grid grid-cols-3 gap-2">
+            <div className="mx-auto p-1 grid grid-cols-3 gap-2 max-h-80 overflow-y-scroll">
               {categories.length > 0 &&
                 categories.map((category: any) => (
                   <RadioGroup.Option key={category.slug} value={category.slug}>
@@ -101,16 +102,23 @@ export default function Index({ categories }: any) {
                 ))}
             </div>
           </RadioGroup>
+          <div className="flex flex-row gap-x-2 justify-between mt-4">
+            <p className="text-xs font-light">
+              {activeCategory?.isAvailable ? activeCategory.description : null}
+            </p>
+            <Link href={`/kategori/${selectedCategory}/${selectedAge}`}>
+              <a>
+                <button
+                  disabled={!selectedCategory}
+                  className="w-max flex gap-x-2 justify-between items-center py-2 px-8 border border-transparent rounded-xl shadow-lg text-xl font-medium text-black bg-yellow-300 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 disabled:bg-gray-300"
+                >
+                  Pilih ide
+                  <ArrowRightIcon className="h-6 w-6" />
+                </button>
+              </a>
+            </Link>
+          </div>
         </div>
-
-        <Link href={`/kategori/${selectedCategory}/${selectedAge}`}>
-          <a>
-            <button className="absolute bottom-2 right-2 w-max flex gap-x-2 justify-between items-center mt-4 py-2 px-8 border border-transparent rounded-xl shadow-lg text-xl font-medium text-black bg-yellow-300 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
-              Pilih ide
-              <ArrowRightIcon className="h-6 w-6" />
-            </button>
-          </a>
-        </Link>
       </div>
     </Page>
   );
