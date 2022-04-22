@@ -65,7 +65,7 @@ export default function Index({ categories }: any) {
           <h2 className="text-md my-4 px-4">Bunda ingin mempelajari kategori apa?</h2>
           <RadioGroup value={selectedCategory} onChange={setSelectedCategory}>
             <RadioGroup.Label className="sr-only">Category</RadioGroup.Label>
-            <div className="mx-auto p-1 grid grid-cols-3 gap-2 max-h-80 overflow-y-scroll">
+            <div className="mx-auto p-1 grid grid-cols-3 gap-2 max-h-72 overflow-y-scroll">
               {categories.length > 0 &&
                 categories.map((category: any) => (
                   <RadioGroup.Option key={category.slug} value={category.slug}>
@@ -109,7 +109,7 @@ export default function Index({ categories }: any) {
             <Link href={`/kategori/${selectedCategory}/${selectedAge}`}>
               <a>
                 <button
-                  disabled={!selectedCategory}
+                  disabled={!activeCategory?.isAvailable}
                   className="w-max flex gap-x-2 justify-between items-center py-2 px-8 border border-transparent rounded-xl shadow-lg text-xl font-medium text-black bg-yellow-300 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 disabled:bg-gray-300"
                 >
                   Pilih ide
